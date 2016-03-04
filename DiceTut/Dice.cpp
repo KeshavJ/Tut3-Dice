@@ -7,16 +7,15 @@ using namespace std;
 
 Dice::Dice()
 {
-	srand(time(NULL));
 }
 
 int Dice::roll() {
+	srand(time(NULL));
 	return rand() % 6 + 1;
 }
 
-
-double average(Dice dice, int numRolls) {
-	double sum = 0;
+float average(Dice dice, int numRolls) {
+	int sum = 0;
 
 	cout << "Rolls: " << endl;
 
@@ -26,21 +25,42 @@ double average(Dice dice, int numRolls) {
 		cout << rolls << endl;
 		sum += rolls;
 	}
-	return (sum / numRolls);
+	return (float)(sum / numRolls);
 }
 
 
-double average(int numArr[], int numInt)
+float average(int numArr[], int arrlength)
  {
 	 double sum = 0;
-	 for (int i = 0; i < numInt; i++)
+	 for (int i = 0; i < arrlength; i++)
 	 {
 		 sum = sum + numArr[i];
 	 }
-	 return (sum / numInt);
+	 return (float)(sum / arrlength);
 }
 
 Dice::~Dice()
 {
+}
+
+int main() {
+	int temp = 0;
+	int rolls = 0;
+	int *arrayPointer = new int[rolls];
+	char stop = 'a';
+	Dice dice;
+	
+	while (stop != 's') 
+	{
+		cout << "Enter any character to roll dice. Enter 's' to stop " << endl;
+		cin >> stop;
+		rolls++;
+
+		temp = dice.roll();
+		cout << "Average from Dice rolls : " << average(dice, rolls) << endl;
+
+		arrayPointer[rolls - 1] = temp;
+		cout << "Average from array integers: " << average(arrayPointer, rolls) << endl;
+	} 
 }
 
